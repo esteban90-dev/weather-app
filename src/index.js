@@ -1,1 +1,3 @@
-console.log('hello world');
+import getWeather from './get-weather.js';
+
+getWeather('albuquerque');

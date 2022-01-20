@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _get_weather_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-weather.js */ \"./src/get-weather.js\");\n\n\n(0,_get_weather_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])('albuquerque');\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _get_weather_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-weather.js */ \"./src/get-weather.js\");\n\n\nconst form = document.querySelector('form');\n\nform.addEventListener('submit', (event) => {\n  event.preventDefault();\n\n  const formData = new FormData(event.target);\n  const cityName = formData.get('city');\n\n  (0,_get_weather_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(cityName);\n});\n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ })
 

@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/display-weather.js":
+/*!********************************!*\
+  !*** ./src/display-weather.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst weatherContainer = document.querySelector('#weather');\n\nfunction displayWeather(weatherData) {\n  let name = document.createElement('p');\n  let country = document.createElement('p')\n  let desc = document.createElement('p');\n  let temp = document.createElement('p');\n  let feelsLike = document.createElement('p');\n  let tempMax = document.createElement('p');\n  let tempMin = document.createElement('p');\n  let windSpeed = document.createElement('p');\n  let windDirection = document.createElement('p');\n\n  name.innerHTML = weatherData.name;\n  country.innerHTML = weatherData.country;\n  desc.innerHTML = weatherData.desc;\n  temp.innerHTML = weatherData.temp;\n  feelsLike.innerHTML = weatherData.feelsLike;\n  tempMax.innerHTML = weatherData.tempMax;\n  tempMin.innerHTML = weatherData.tempMin;\n  windSpeed.innerHTML = weatherData.windSpeed;\n  windDirection.innerHTML = weatherData.windDir;\n\n  weatherContainer.appendChild(name);\n  weatherContainer.appendChild(country);\n  weatherContainer.appendChild(desc);\n  weatherContainer.appendChild(temp);\n  weatherContainer.appendChild(feelsLike);\n  weatherContainer.appendChild(tempMax);\n  weatherContainer.appendChild(tempMin);\n  weatherContainer.appendChild(windSpeed);\n  weatherContainer.appendChild(windDirection);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (displayWeather);\n\n//# sourceURL=webpack://weather-app/./src/display-weather.js?");
+
+/***/ }),
+
 /***/ "./src/get-weather.js":
 /*!****************************!*\
   !*** ./src/get-weather.js ***!
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction getWeather(city) {\n  const url = \"http://127.0.0.1:3000/api/v1/weather\";\n  const queryParam = \"?q=\" + city;\n\n  fetch(url + queryParam, { mode: 'cors' })\n    .then( (response) => { \n      return response.json();\n    })\n    .then( (json) => {\n      let data = {\n        name: json['name'],\n        country: json['sys']['country'],\n        temp: json['main']['temp'],\n        tempMin: json['main']['temp_min'],\n        tempMax: json['main']['temp_max'],\n        feelsLike: json['main']['feels_like'],\n        desc: json['weather']['0']['description'],\n        icon: json['weather']['0']['icon'],\n        windSpeed: json['wind']['speed'],\n        windDir: json['wind']['deg']\n      }\n      console.log(data);\n    })\n    .catch( (error) => {\n      console.log(error);\n    });\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getWeather);\n\n//# sourceURL=webpack://weather-app/./src/get-weather.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction getWeather(city) {\n  const url = \"http://127.0.0.1:3000/api/v1/weather\";\n  const queryParam = \"?q=\" + city + \"&units=imperial\";\n\n  return fetch(url + queryParam, { mode: 'cors' })\n    .then( (response) => { \n      return response.json();\n    })\n    .then( (json) => {\n      const data = {\n        name: json['name'],\n        country: json['sys']['country'],\n        temp: json['main']['temp'],\n        tempMin: json['main']['temp_min'],\n        tempMax: json['main']['temp_max'],\n        feelsLike: json['main']['feels_like'],\n        desc: json['weather']['0']['description'],\n        icon: json['weather']['0']['icon'],\n        windSpeed: json['wind']['speed'],\n        windDir: json['wind']['deg']\n      }\n\n      return data;\n    });\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getWeather);\n\n//# sourceURL=webpack://weather-app/./src/get-weather.js?");
 
 /***/ }),
 
@@ -26,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _get_weather_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-weather.js */ \"./src/get-weather.js\");\n\n\nconst form = document.querySelector('form');\n\nform.addEventListener('submit', (event) => {\n  event.preventDefault();\n\n  const formData = new FormData(event.target);\n  const cityName = formData.get('city');\n\n  (0,_get_weather_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(cityName);\n});\n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _get_weather_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./get-weather.js */ \"./src/get-weather.js\");\n/* harmony import */ var _display_weather_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./display-weather.js */ \"./src/display-weather.js\");\n\n\n\nconst form = document.querySelector('form');\n\nform.addEventListener('submit', (event) => {\n  event.preventDefault();\n\n  const formData = new FormData(event.target);\n  const cityName = formData.get('city');\n\n  (0,_get_weather_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(cityName)\n    .then( (weatherData) => {\n      console.log(weatherData);\n      (0,_display_weather_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(weatherData);\n    })\n    .catch( (error) => {\n      console.log(error);\n    })\n});\n\n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ })
 

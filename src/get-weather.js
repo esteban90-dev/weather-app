@@ -1,13 +1,13 @@
 function getWeather(city) {
   const url = "http://127.0.0.1:3000/api/v1/weather";
-  const queryParam = "?q=" + city;
+  const queryParam = "?q=" + city + "&units=imperial";
 
-  fetch(url + queryParam, { mode: 'cors' })
+  return fetch(url + queryParam, { mode: 'cors' })
     .then( (response) => { 
       return response.json();
     })
     .then( (json) => {
-      let data = {
+      const data = {
         name: json['name'],
         country: json['sys']['country'],
         temp: json['main']['temp'],
@@ -19,10 +19,8 @@ function getWeather(city) {
         windSpeed: json['wind']['speed'],
         windDir: json['wind']['deg']
       }
-      console.log(data);
-    })
-    .catch( (error) => {
-      console.log(error);
+
+      return data;
     });
 }
 

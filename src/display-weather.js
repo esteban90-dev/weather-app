@@ -1,3 +1,5 @@
+import degreesToCardinal from './degrees-to-cardinal.js';
+
 const weatherContainer = document.querySelector('#weather');
 
 function displayWeather(weatherData) {
@@ -43,8 +45,8 @@ function displayWeather(weatherData) {
   tempMinValue.classList.add('temp-value');
 
   windLabel.innerHTML = 'Wind: ';
-  windSpeedValue.innerHTML = weatherData.windSpeed ;
-  windDirectionValue.innerHTML = weatherData.windDir;
+  windSpeedValue.innerHTML = weatherData.windSpeed;
+  windDirectionValue.innerHTML = degreesToCardinal(weatherData.windDir);
 
   tempUnits.innerHTML = 'F';
   tempUnits.classList.add('temp-unit');

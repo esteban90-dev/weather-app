@@ -26,6 +26,11 @@ function displayWeather(weatherData) {
   let tempUnits = document.createElement('p');
   let windSpeedUnits = document.createElement('p');
 
+  // clear existing content from weatherContainer
+  while (weatherContainer.childNodes.length > 0) {
+    weatherContainer.childNodes[0].remove();
+  }
+
   nameValue.innerHTML = weatherData.name;
   countryValue.innerHTML = weatherData.country;
   descValue.innerHTML = weatherData.desc;

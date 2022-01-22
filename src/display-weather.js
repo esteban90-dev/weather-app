@@ -3,22 +3,16 @@ import degreesToCardinal from './degrees-to-cardinal.js';
 function displayWeather(weatherData) {
   const weatherContainer = document.querySelector('#weather');
   let nameValue = document.createElement('p');
-
   let countryValue = document.createElement('p');
-
   let descValue = document.createElement('p');
-
   let tempValue = document.createElement('p');
-
+  let icon = document.createElement('img');
   let feelsLikeLabel = document.createElement('p');
   let feelsLikeValue = document.createElement('p');
-
   let tempMaxLabel = document.createElement('p');
   let tempMaxValue = document.createElement('p');
-
   let tempMinLabel = document.createElement('p');
   let tempMinValue = document.createElement('p');
-
   let windLabel = document.createElement('p');
   let windSpeedValue = document.createElement('p');
   let windDirectionValue = document.createElement('p');
@@ -35,6 +29,8 @@ function displayWeather(weatherData) {
   descValue.innerHTML = weatherData.desc;
   tempValue.innerHTML = weatherData.temp;
   tempValue.classList.add('temp-value');
+
+  icon.src = 'http://openweathermap.org/img/w/' + weatherData['icon'] + '.png';
   
   feelsLikeLabel.innerHTML = 'Feels Like: ';
   feelsLikeValue.innerHTML = weatherData.feelsLike;
@@ -61,6 +57,7 @@ function displayWeather(weatherData) {
   weatherContainer.appendChild(descValue);
   weatherContainer.appendChild(tempValue);
   weatherContainer.appendChild(tempUnits);
+  weatherContainer.appendChild(icon);
   weatherContainer.appendChild(feelsLikeLabel);
   weatherContainer.appendChild(feelsLikeValue);
   weatherContainer.appendChild(tempUnits.cloneNode(true));

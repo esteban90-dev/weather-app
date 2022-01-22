@@ -17,7 +17,10 @@ form.addEventListener('submit', (event) => {
       displayWeather(weatherData);
     })
     .catch( (error) => {
-      displayError(error.message);
+      if (error.message === 'no weather data found') {
+        displayError(error.message);
+      }
+      console.log(error);
     })
 });
 

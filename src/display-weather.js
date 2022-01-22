@@ -31,6 +31,7 @@ function displayWeather(weatherData) {
   tempValue.classList.add('temp-value');
 
   icon.src = 'http://openweathermap.org/img/w/' + weatherData['icon'] + '.png';
+  icon.alt = 'weather icon';
   
   feelsLikeLabel.innerHTML = 'Feels Like: ';
   feelsLikeValue.innerHTML = weatherData.feelsLike;

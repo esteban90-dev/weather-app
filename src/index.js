@@ -1,5 +1,6 @@
 import getWeather from './get-weather.js';
 import displayWeather from './display-weather.js';
+import displayError from './display-error.js';
 
 const form = document.querySelector('form');
 const celsiusButton = document.querySelector('#celsius');
@@ -13,11 +14,10 @@ form.addEventListener('submit', (event) => {
 
   getWeather(cityName)
     .then( (weatherData) => {
-      console.log(weatherData);
       displayWeather(weatherData);
     })
     .catch( (error) => {
-      console.log(error);
+      displayError(error.message);
     })
 });
 

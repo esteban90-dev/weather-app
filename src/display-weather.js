@@ -1,8 +1,7 @@
 import degreesToCardinal from './degrees-to-cardinal.js';
 
-const weatherContainer = document.querySelector('#weather');
-
 function displayWeather(weatherData) {
+  const weatherContainer = document.querySelector('#weather');
   let nameValue = document.createElement('p');
 
   let countryValue = document.createElement('p');

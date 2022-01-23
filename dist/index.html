@@ -5,18 +5,32 @@
     <meta charset="UTF=8">
     <title>Weather App</title>
     <link rel="stylesheet" href="./assets/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
   </head>
 
   <body>
-    <h1>What's the Weather Like?</h1>
-    <form>
-      <label for="cityName">Enter a city name:</label>
-      <input type="text" id="cityName" name="city">
-      <input type="submit">
-    </form>
-    <input type="button" value="C" id="celsius">
-    <input type="button" value="F" class='active' id="fahrenheit">
-    <div id="weather"></div>
+    <main>
+      <header>
+        <h1>What's the Weather Like?</h1>
+        <form>
+          <label for="cityName">Enter a city name:</label>
+          <div class="search-bar-outer">
+            <div class="search-bar-inner">
+              <input type="text" id="cityName" name="city" placeholder="enter a city name...">
+              <button type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="button-container">
+          <input type="button" value="C" id="celsius">
+          <input type="button" value="F" class='active' id="fahrenheit">
+        </div>
+      </header>
+      <div id="weather"></div>
+    </main>
+    
     <script src="main.js"></script>
   </body>
 </html>

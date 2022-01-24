@@ -1,6 +1,7 @@
 import degreesToCardinal from './degrees-to-cardinal.js';
 
 function displayWeather(weatherData) {
+  const celsiusButton = document.querySelector('#celsius');
   const weatherContainer = document.querySelector('#weather');
   const weatherCard = document.createElement('div');
   weatherCard.classList.add('weather-card');
@@ -41,8 +42,16 @@ function displayWeather(weatherData) {
   let tempUnits = document.createElement('p');
   tempValue.classList.add('center');
   tempValue.classList.add('temp-value');
-  tempValue.innerHTML = weatherData.temp;
-  tempUnits.innerHTML = 'F';
+
+  // if celsius button is active, display in celsius
+  if (celsiusButton.classList.contains('active')) {
+    tempValue.innerHTML = ((weatherData.temp - 32) / 1.8).toFixed(2);
+    tempUnits.innerHTML = 'C';
+  } else {
+    tempValue.innerHTML = weatherData.temp;
+    tempUnits.innerHTML = 'F';
+  }
+  
   tempUnits.classList.add('temp-unit');
   currentContainer.appendChild(tempValue);
   currentContainer.appendChild(tempUnits);

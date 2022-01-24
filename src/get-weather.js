@@ -21,7 +21,6 @@ function getWeather(city) {
           windSpeed: json['wind']['speed'],
           windDir: json['wind']['deg']
         }
-        console.log(data);
         return data;
       }
       catch {

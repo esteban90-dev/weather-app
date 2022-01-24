@@ -27,6 +27,10 @@ label {
   left: -10000px;
 }
 
+img {
+  margin-right: 20px;
+}
+
 .search-bar-outer {
   display: flex;
   justify-content: center;
@@ -84,4 +88,78 @@ input[type="button"].active {
   border-style: inset;
   border-color: rgb(104, 104, 104);
   border-width: 1px;
+}
+
+#weather {
+  display: flex;
+  justify-content: center;
+}
+
+.weather-card {
+  border-style: solid;
+  border-width: 2px;
+  border-color: lightgray;
+  border-radius: 15px;
+  margin-top: 30px;
+  padding: 10px 20px 20px 20px;
+}
+
+.weather-card > p {
+  font-size: 30px;
+  margin: 10px 0;
+}
+
+.conditions-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.current-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.current-container p {
+  font-size: 30px;
+  margin: 10px 0;
+}
+
+.temp-value {
+  padding-right: 5px;
+}
+
+.center {
+  text-align: center;
+}
+
+.labels-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.values-container {
+  margin-left: 10px;
+}
+
+.labels-container > p {
+  margin: 5px 0;
+}
+
+.labels-values-container {
+  display: flex;
+  justify-content: center;
+}
+
+.values-units-container {
+  display: flex;
+}
+
+.values-units-container:last-child > p {
+  margin-right: 4px;
+}
+
+.values-units-container > p {
+  margin: 5px 0;
 }

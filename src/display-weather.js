@@ -2,76 +2,120 @@ import degreesToCardinal from './degrees-to-cardinal.js';
 
 function displayWeather(weatherData) {
   const weatherContainer = document.querySelector('#weather');
-  let nameValue = document.createElement('p');
-  let countryValue = document.createElement('p');
-  let descValue = document.createElement('p');
-  let tempValue = document.createElement('p');
-  let icon = document.createElement('img');
-  let feelsLikeLabel = document.createElement('p');
-  let feelsLikeValue = document.createElement('p');
-  let tempMaxLabel = document.createElement('p');
-  let tempMaxValue = document.createElement('p');
-  let tempMinLabel = document.createElement('p');
-  let tempMinValue = document.createElement('p');
-  let windLabel = document.createElement('p');
-  let windSpeedValue = document.createElement('p');
-  let windDirectionValue = document.createElement('p');
-  let tempUnits = document.createElement('p');
-  let windSpeedUnits = document.createElement('p');
-
+  const weatherCard = document.createElement('div');
+  weatherCard.classList.add('weather-card');
+  
   // clear existing content from weatherContainer
   while (weatherContainer.childNodes.length > 0) {
     weatherContainer.childNodes[0].remove();
   }
 
+  // add city name to weather card
+  let nameValue = document.createElement('p');
+  nameValue.classList.add('center');
   nameValue.innerHTML = weatherData.name;
-  countryValue.innerHTML = weatherData.country;
-  descValue.innerHTML = weatherData.desc;
-  tempValue.innerHTML = weatherData.temp;
-  tempValue.classList.add('temp-value');
+  weatherCard.appendChild(nameValue);
 
+  // add country to weather card
+  let countryValue = document.createElement('p');
+  countryValue.classList.add('center');
+  countryValue.innerHTML = weatherData.country;
+  weatherCard.appendChild(countryValue);
+
+  // add conditions (icon/description) to weather card
+  const conditionsContainer = document.createElement('div');
+  conditionsContainer.classList.add('conditions-container');
+  let icon = document.createElement('img');
   icon.src = 'http://openweathermap.org/img/w/' + weatherData['icon'] + '.png';
   icon.alt = 'weather icon';
-  
-  feelsLikeLabel.innerHTML = 'Feels Like: ';
-  feelsLikeValue.innerHTML = weatherData.feelsLike;
-  feelsLikeValue.classList.add('temp-value');
+  let descValue = document.createElement('p');
+  descValue.innerHTML = weatherData.desc;
+  conditionsContainer.appendChild(icon);
+  conditionsContainer.appendChild(descValue);
+  weatherCard.appendChild(conditionsContainer);
 
-  tempMaxLabel.innerHTML = 'High: ';
-  tempMaxValue.innerHTML = weatherData.tempMax;
-  tempMaxValue.classList.add('temp-value');
-
-  tempMinLabel.innerHTML = 'Low: ';
-  tempMinValue.innerHTML = weatherData.tempMin;
-  tempMinValue.classList.add('temp-value');
-
-  windLabel.innerHTML = 'Wind: ';
-  windSpeedValue.innerHTML = weatherData.windSpeed;
-  windDirectionValue.innerHTML = degreesToCardinal(weatherData.windDir);
-
+  // add current temperature to weather card
+  const currentContainer = document.createElement('div');
+  currentContainer.classList.add('current-container');
+  let tempValue = document.createElement('p');
+  let tempUnits = document.createElement('p');
+  tempValue.classList.add('center');
+  tempValue.classList.add('temp-value');
+  tempValue.innerHTML = weatherData.temp;
   tempUnits.innerHTML = 'F';
   tempUnits.classList.add('temp-unit');
-  windSpeedUnits.innerHTML = 'mph';
+  currentContainer.appendChild(tempValue);
+  currentContainer.appendChild(tempUnits);
+  weatherCard.appendChild(currentContainer);
 
-  weatherContainer.appendChild(nameValue);
-  weatherContainer.appendChild(countryValue);
-  weatherContainer.appendChild(descValue);
-  weatherContainer.appendChild(tempValue);
-  weatherContainer.appendChild(tempUnits);
-  weatherContainer.appendChild(icon);
-  weatherContainer.appendChild(feelsLikeLabel);
-  weatherContainer.appendChild(feelsLikeValue);
-  weatherContainer.appendChild(tempUnits.cloneNode(true));
-  weatherContainer.appendChild(tempMaxLabel);
-  weatherContainer.appendChild(tempMaxValue);
-  weatherContainer.appendChild(tempUnits.cloneNode(true));
-  weatherContainer.appendChild(tempMinLabel);
-  weatherContainer.appendChild(tempMinValue);
-  weatherContainer.appendChild(tempUnits.cloneNode(true));
-  weatherContainer.appendChild(windLabel);
-  weatherContainer.appendChild(windSpeedValue);
-  weatherContainer.appendChild(windSpeedUnits);
-  weatherContainer.appendChild(windDirectionValue);
+  // add feels like / high / low / wind labels to weather card
+  const labelsValuesContainer = document.createElement('div');
+  labelsValuesContainer.classList.add('labels-values-container');
+  const labelsContainer = document.createElement('div');
+  labelsContainer.classList.add('labels-container');
+  let feelsLikeLabel = document.createElement('p');
+  feelsLikeLabel.innerHTML = 'Feels Like:';
+  let tempMaxLabel = document.createElement('p');
+  tempMaxLabel.innerHTML = 'High:';
+  let tempMinLabel = document.createElement('p');
+  tempMinLabel.innerHTML = 'Low:';
+  let windLabel = document.createElement('p');
+  windLabel.innerHTML = 'Wind:';
+  labelsContainer.appendChild(feelsLikeLabel);
+  labelsContainer.appendChild(tempMaxLabel);
+  labelsContainer.appendChild(tempMinLabel);
+  labelsContainer.appendChild(windLabel);
+  labelsValuesContainer.appendChild(labelsContainer);
+
+  // add feels like / high / low / values & units to weather card
+  const valuesContainer = document.createElement('div');
+  valuesContainer.classList.add('values-container');
+
+  const feelsLikeContainer = document.createElement('div');
+  feelsLikeContainer.classList.add('values-units-container');
+  let feelsLikeValue = document.createElement('p');
+  feelsLikeValue.innerHTML = weatherData.feelsLike;
+  feelsLikeValue.classList.add('temp-value');
+  feelsLikeContainer.appendChild(feelsLikeValue);
+  feelsLikeContainer.appendChild(tempUnits.cloneNode(true));
+  valuesContainer.appendChild(feelsLikeContainer);
+
+  const highContainer = document.createElement('div');
+  highContainer.classList.add('values-units-container');
+  let tempMaxValue = document.createElement('p');
+  tempMaxValue.innerHTML = weatherData.tempMax;
+  tempMaxValue.classList.add('temp-value');
+  highContainer.appendChild(tempMaxValue);
+  highContainer.appendChild(tempUnits.cloneNode(true));
+  valuesContainer.appendChild(highContainer);
+
+  const lowContainer = document.createElement('div');
+  lowContainer.classList.add('values-units-container');
+  let tempMinValue = document.createElement('p');
+  tempMinValue.innerHTML = weatherData.tempMin;
+  tempMinValue.classList.add('temp-value');
+  lowContainer.appendChild(tempMinValue);
+  lowContainer.appendChild(tempUnits.cloneNode(true));
+  valuesContainer.appendChild(lowContainer);
+
+  const windContainer = document.createElement('div');
+  windContainer.classList.add('values-units-container');
+  let windSpeedValue = document.createElement('p');
+  let windDirectionValue = document.createElement('p');
+  let windSpeedUnits = document.createElement('p');
+  windSpeedValue.innerHTML = weatherData.windSpeed;
+  windDirectionValue.innerHTML = degreesToCardinal(weatherData.windDir);
+  windSpeedUnits.innerHTML = 'mph';
+  windContainer.appendChild(windSpeedValue);
+  windContainer.appendChild(windDirectionValue);
+  windContainer.appendChild(windSpeedUnits);
+  valuesContainer.appendChild(windContainer);
+
+  labelsValuesContainer.appendChild(valuesContainer);
+  weatherCard.appendChild(labelsValuesContainer);
+
+  // add weather card to weather container
+  weatherContainer.appendChild(weatherCard);
 }
 
 export default displayWeather;

@@ -15,11 +15,13 @@ function getWeather(city) {
           tempMin: json['main']['temp_min'],
           tempMax: json['main']['temp_max'],
           feelsLike: json['main']['feels_like'],
+          tempUnits: 'F',
           desc: json['weather']['0']['description'],
           icon: json['weather']['0']['icon'],
           windSpeed: json['wind']['speed'],
           windDir: json['wind']['deg']
         }
+        console.log(data);
         return data;
       }
       catch {

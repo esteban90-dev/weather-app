@@ -1,6 +1,7 @@
 import getWeather from './get-weather.js';
 import displayWeather from './display-weather.js';
 import displayError from './display-error.js';
+import toCelsius from './to-celsius.js';
 
 const form = document.querySelector('form');
 const celsiusButton = document.querySelector('#celsius');
@@ -31,7 +32,7 @@ celsiusButton.addEventListener('click', () => {
   if (fahrenheitButton.classList.contains('active')) {
     // convert values to celsius
     tempValueNodes.forEach( (node) => {
-      node.innerHTML = ((parseFloat(node.innerHTML) - 32 ) / 1.8).toFixed(2);
+      node.innerHTML = toCelsius(node.innerHTML);
     });
 
     // change units to C

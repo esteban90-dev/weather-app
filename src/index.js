@@ -15,7 +15,17 @@ form.addEventListener('submit', (event) => {
   const cityName = formData.get('city');
 
   getWeather(cityName)
-    .then( (weatherData) => {
+    .then((weatherData) => {
+      // if celsius button is active, then convert temps to degC
+      if (celsiusButton.classList.contains('active')) {
+        weatherData.temp = toCelsius(weatherData.temp);
+        weatherData.tempMin = toCelsius(weatherData.tempMin);
+        weatherData.tempMax = toCelsius(weatherData.tempMax);
+        weatherData.feelsLike = toCelsius(weatherData.feelsLike);
+        weatherData.tempUnits = 'C';
+      }
+
+      // display the weather data
       displayWeather(weatherData);
     })
     .catch( (error) => {

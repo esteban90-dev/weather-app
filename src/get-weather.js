@@ -1,32 +1,29 @@
-function getWeather(city) {
+async function getWeather(city) {
   const url = "http://127.0.0.1:3000/api/v1/weather";
   const queryParam = "?q=" + city + "&units=imperial";
 
-  return fetch(url + queryParam, { mode: 'cors' })
-    .then( (response) => { 
-      return response.json();
-    })
-    .then( (json) => {
-      try {
-        const data = {
-          name: json['name'],
-          country: json['sys']['country'],
-          temp: json['main']['temp'],
-          tempMin: json['main']['temp_min'],
-          tempMax: json['main']['temp_max'],
-          feelsLike: json['main']['feels_like'],
-          tempUnits: 'F',
-          desc: json['weather']['0']['description'],
-          icon: json['weather']['0']['icon'],
-          windSpeed: json['wind']['speed'],
-          windDir: json['wind']['deg']
-        }
-        return data;
-      }
-      catch {
-        throw new Error('no weather data found');
-      }
-    });
+  const response = await fetch(url + queryParam, { mode: 'cors' });
+  const json = await response.json();
+
+  try {
+    const data = {
+      name: json['name'],
+      country: json['sys']['country'],
+      temp: json['main']['temp'],
+      tempMin: json['main']['temp_min'],
+      tempMax: json['main']['temp_max'],
+      feelsLike: json['main']['feels_like'],
+      tempUnits: 'F',
+      desc: json['weather']['0']['description'],
+      icon: json['weather']['0']['icon'],
+      windSpeed: json['wind']['speed'],
+      windDir: json['wind']['deg']
+    }
+    return data;
+  }
+  catch {
+    throw new Error('no weather data found');
+  }
 }
 
 export default getWeather;

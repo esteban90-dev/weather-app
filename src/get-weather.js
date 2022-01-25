@@ -1,5 +1,5 @@
 async function getWeather(city) {
-  const url = 'http://127.0.0.1:3000/api/v1/weather';
+  const url = 'https://agile-dusk-14659.herokuapp.com/';
   const queryParam = `?q=${city}&units=imperial`;
 
   const response = await fetch(url + queryParam, { mode: 'cors' });

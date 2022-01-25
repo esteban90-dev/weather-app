@@ -42,17 +42,9 @@ function displayWeather(weatherData) {
   let tempUnits = document.createElement('p');
   tempValue.classList.add('center');
   tempValue.classList.add('temp-value');
-
-  // if celsius button is active, display in celsius
-  if (celsiusButton.classList.contains('active')) {
-    tempValue.innerHTML = ((weatherData.temp - 32) / 1.8).toFixed(2);
-    tempUnits.innerHTML = 'C';
-  } else {
-    tempValue.innerHTML = weatherData.temp;
-    tempUnits.innerHTML = 'F';
-  }
-  
   tempUnits.classList.add('temp-unit');
+  tempValue.innerHTML = weatherData.temp;
+  tempUnits.innerHTML = weatherData.tempUnits;
   currentContainer.appendChild(tempValue);
   currentContainer.appendChild(tempUnits);
   weatherCard.appendChild(currentContainer);

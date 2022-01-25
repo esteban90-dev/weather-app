@@ -1,5 +1,5 @@
 async function getWeather(city) {
-  const url = 'https://agile-dusk-14659.herokuapp.com/';
+  const url = 'https://agile-dusk-14659.herokuapp.com/weather';
   const queryParam = `?q=${city}&units=imperial`;
 
   const response = await fetch(url + queryParam, { mode: 'cors' });

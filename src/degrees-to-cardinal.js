@@ -34,6 +34,8 @@ function degreesToCardinal(degrees) {
   if ((degrees > 292.5) && (degrees <= 337.5)) {
     return 'NW';
   }
+
+  return false;
 }
 
 export default degreesToCardinal;

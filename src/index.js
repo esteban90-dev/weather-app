@@ -15,40 +15,42 @@ form.addEventListener('submit', (event) => {
   const cityName = formData.get('city');
 
   getWeather(cityName)
-    .then((weatherData) => {
+    .then((data) => {
+      const weather = data;
       // if celsius button is active, then convert temps to degC
       if (celsiusButton.classList.contains('active')) {
-        weatherData.temp = toCelsius(weatherData.temp);
-        weatherData.tempMin = toCelsius(weatherData.tempMin);
-        weatherData.tempMax = toCelsius(weatherData.tempMax);
-        weatherData.feelsLike = toCelsius(weatherData.feelsLike);
-        weatherData.tempUnits = 'C';
+        weather.temp = toCelsius(weather.temp);
+        weather.tempMin = toCelsius(weather.tempMin);
+        weather.tempMax = toCelsius(weather.tempMax);
+        weather.feelsLike = toCelsius(weather.feelsLike);
+        weather.tempUnits = 'C';
       }
-
       // display the weather data
-      displayWeather(weatherData);
+      displayWeather(weather);
     })
-    .catch( (error) => {
+    .catch((error) => {
       if (error.message === 'no weather data found') {
         displayError(error.message);
       }
       console.log(error);
-    })
+    });
 });
 
 celsiusButton.addEventListener('click', () => {
   const tempValueNodes = document.querySelectorAll('.temp-value');
   const tempUnitNodes = document.querySelectorAll('.temp-unit');
-  
+
   if (fahrenheitButton.classList.contains('active')) {
     // convert values to celsius
-    tempValueNodes.forEach( (node) => {
-      node.innerHTML = toCelsius(node.innerHTML);
+    tempValueNodes.forEach((node) => {
+      const tempValue = node;
+      tempValue.innerHTML = toCelsius(tempValue.innerHTML);
     });
 
     // change units to C
-    tempUnitNodes.forEach( (node) => {
-      node.innerHTML = 'C';
+    tempUnitNodes.forEach((node) => {
+      const tempUnit = node;
+      tempUnit.innerHTML = 'C';
     });
 
     // transfer '.active' from the fahrenheit button to the celsius button
@@ -60,16 +62,18 @@ celsiusButton.addEventListener('click', () => {
 fahrenheitButton.addEventListener('click', () => {
   const tempValueNodes = document.querySelectorAll('.temp-value');
   const tempUnitNodes = document.querySelectorAll('.temp-unit');
-  
+
   if (celsiusButton.classList.contains('active')) {
     // convert values to fahrenheit
-    tempValueNodes.forEach( (node) => {
-      node.innerHTML = toFahrenheit(node.innerHTML);
+    tempValueNodes.forEach((node) => {
+      const tempValue = node;
+      tempValue.innerHTML = toFahrenheit(tempValue.innerHTML);
     });
 
     // change units to F
-    tempUnitNodes.forEach( (node) => {
-      node.innerHTML = 'F';
+    tempUnitNodes.forEach((node) => {
+      const tempUnit = node;
+      tempUnit.innerHTML = 'F';
     });
 
     // transfer '.active' from the celsius button to the fahrenheit button
